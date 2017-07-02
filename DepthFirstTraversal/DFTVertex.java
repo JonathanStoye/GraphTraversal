@@ -44,4 +44,8 @@ public class DFTVertex extends graph.Vertex {
   public DFTVertex(int id) {
     super(id);
   }
+
+  public String toString() {
+    return "ID: " + this.getId() + "\n" + "Color: " + this.getColor() + "\n" + "First Visit: " + this.getFirstVisit() + "\n" + "Last Visit: " + this.getLastVisit() + "\n";
+  }
 }
