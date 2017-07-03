@@ -6,19 +6,24 @@ import java.util.List;
 
 import static graph.GraphLesen.FileToGraph;
 
-/**
- * Created by jonathan on 02.07.17.
- */
 public class Main {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws NotAcyclicException {
     Graph graph8 = FileToGraph("./DepthFirstTraversal/TestData/graph8.txt", true);
     Graph graph9 = FileToGraph("./DepthFirstTraversal/TestData/graph9.txt", true);
     Graph graph20 = FileToGraph("./DepthFirstTraversal/TestData/graph20.txt", true);
 
+    /*
+      Graphs are being put into DepthFirstTraversal-objects (DFT) in order to establish the search.
+      A new graph is stored in each DFT and traversed using the DepthFirstTraversal-Algorithm.
+     */
     DepthFirstTraversal dft1 = new DepthFirstTraversal(graph8);
     DepthFirstTraversal dft2 = new DepthFirstTraversal(graph9);
     DepthFirstTraversal dft3 = new DepthFirstTraversal(graph20);
 
+    /*
+      Tries to sort vertices in each DFT topologically.
+      If cycle is found, a NotAcyclicException is thrown.
+     */
     try {
       List<DFTVertex> sortedGraph8 = dft1.sortTopologically();
       List<DFTVertex> sortedGraph9 = dft2.sortTopologically();
