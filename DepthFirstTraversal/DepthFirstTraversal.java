@@ -1,5 +1,6 @@
 package DepthFirstTraversal;
 
+import graph.Edge;
 import graph.Graph;
 import graph.Vertex;
 
@@ -7,6 +8,7 @@ import java.util.*;
 
 public class DepthFirstTraversal {
 
+  class DFTGraph<V extends DFTVertex, E extends Edge> extends graph.Graph {}
   private int time;
   private DFTGraph graph = new DFTGraph();
   private boolean acyclic = true;
@@ -20,6 +22,8 @@ public class DepthFirstTraversal {
   public DepthFirstTraversal(Graph inputGraph) throws NotAcyclicException {
     for (Vertex vertex : (Collection<Vertex>)inputGraph.getVertices()) {
       DFTVertex newVertex = new DFTVertex(vertex.getId());
+      newVertex.setColor("white");
+      newVertex.setPredecessor(null);
       this.graph.addVertex(newVertex);
     }
     depthFirstSearch();
@@ -34,11 +38,6 @@ public class DepthFirstTraversal {
   private void depthFirstSearch() throws NotAcyclicException {
     // Start depthFirstSearch for every vertex.
     int time = 0;
-
-    for (DFTVertex vertex : (Collection<DFTVertex>)this.graph.getVertices()) {
-      vertex.setColor("white");
-      vertex.setPredecessor(null);
-    }
     for (DFTVertex vertex : (Collection<DFTVertex>)this.graph.getVertices()){
       if (vertex.getColor() == "white"){
         depthVisit(vertex);
