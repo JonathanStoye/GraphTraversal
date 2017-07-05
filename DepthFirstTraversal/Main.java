@@ -21,6 +21,7 @@ public class Main {
       DepthFirstTraversal dft1 = new DepthFirstTraversal(graph8);
       DepthFirstTraversal dft2 = new DepthFirstTraversal(graph9);
       DepthFirstTraversal dft3 = new DepthFirstTraversal(graph20);
+
       /*
         Tries to sort vertices in each DFT topologically.
         If cycle is found, a NotAcyclicException is thrown.
@@ -28,6 +29,7 @@ public class Main {
       List<DFTVertex> sortedGraph8 = dft1.sortTopologically();
       List<DFTVertex> sortedGraph9 = dft2.sortTopologically();
       List<DFTVertex> sortedGraph20 = dft3.sortTopologically();
+
       for (DFTVertex vertex : sortedGraph8) {
         System.out.println(vertex.toString());
       }

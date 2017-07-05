@@ -9,7 +9,7 @@ import java.util.*;
 public class DepthFirstTraversal {
 
   class DFTGraph<V extends DFTVertex, E extends Edge> extends graph.Graph {}
-  private int time;
+  private int time = 0;
   private DFTGraph graph = new DFTGraph();
   private boolean acyclic = true;
 
@@ -37,7 +37,6 @@ public class DepthFirstTraversal {
    */
   private void depthFirstSearch() throws NotAcyclicException {
     // Start depthFirstSearch for every vertex.
-    int time = 0;
     for (DFTVertex vertex : (Collection<DFTVertex>)this.graph.getVertices()){
       if (vertex.getColor() == "white"){
         depthVisit(vertex);
@@ -58,14 +57,15 @@ public class DepthFirstTraversal {
     vertex.setFirstVisit(++time);
 
     for (DFTVertex neighbor : (Collection<DFTVertex>)graph.getNeighbours(vertex)){
-      String color= neighbor.getColor();
-      if (color =="white"){
+      String color = neighbor.getColor();
+      if (color == "white"){
         neighbor.setPredecessor(vertex);
         depthVisit(neighbor);
       } else if ( color == "grey" ){
         this.acyclic = false;
       }
     }
+
     vertex.setColor("black");
     vertex.setLastVisit(++time);
   }
